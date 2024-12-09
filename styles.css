@@ -45,7 +45,6 @@ nav {
   display: flex;
   gap: 40px;
   justify-content: end;
-  width: 100%;
 }
 
 nav {
@@ -144,6 +143,7 @@ p.quote {
     align-items: flex-start;
     justify-content: flex-start;
     margin-left: 24px;
+    gap: 32px;
   }
 
   h1 {
