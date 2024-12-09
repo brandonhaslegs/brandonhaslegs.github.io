@@ -1,0 +1,155 @@
+@font-face {
+  font-family: "Hubot Sans";
+  src: url("Hubot-Sans.woff2") format("woff2 supports variations"),
+    url("Hubot-Sans.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+}
+
+::selection {
+  background-color: yellow;
+}
+
+html {
+  font-family: "Hubot Sans";
+}
+
+body {
+  font-family: "Hubot Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: oldlace;
+  line-height: 1.6;
+  height: 100vh; /* Full height */
+  margin-top: 24px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  max-height: 50px;
+}
+
+#header-logo {
+  width: 80px;
+  height: 80px;
+  margin-right: 8px;
+}
+
+nav {
+  display: flex;
+  gap: 40px;
+  justify-content: end;
+  width: 100%;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+nav a#logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 24px;
+  justify-self: left;
+}
+
+nav a {
+  text-decoration: none;
+  color: #000;
+}
+
+nav a:hover {
+  color: #007bff;
+}
+
+nav a.current {
+  color: #007bff;
+}
+
+nav a#logo.current,
+nav a#logo:hover {
+  color: #000;
+}
+
+nav #links {
+  display: flex;
+  gap: 40px;
+}
+
+nav #links a {
+  white-space: nowrap;
+}
+
+main {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 80px;
+  color: #000;
+  font-weight: 100;
+  color: #007bff;
+  line-height: 100%;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 16px;
+  color: #007bff;
+  margin-top: 48px;
+}
+
+p,
+ul {
+  color: #000;
+  font-size: 32px;
+  font-weight: 300;
+}
+
+p.small {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+a {
+  color: #007bff;
+}
+
+sup {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+p.quote {
+  font-size: 56px;
+  line-height: 100%;
+  text-indent: -0.35em;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  p,
+  ul {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  p.quote {
+    font-size: 32px;
+  }
+}
