@@ -137,6 +137,7 @@ p.quote {
   font-size: 56px;
   line-height: 100%;
   text-indent: -0.35em;
+  font-weight: 100;
 }
 
 @media (max-width: 768px) {
@@ -145,6 +146,7 @@ p.quote {
   }
   h1 {
     font-size: 40px;
+    font-weight: 300;
   }
   p,
   ul {
@@ -153,5 +155,6 @@ p.quote {
   }
   p.quote {
     font-size: 32px;
+    font-weight: 300;
   }
 }
