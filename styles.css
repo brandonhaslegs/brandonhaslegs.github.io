@@ -137,6 +137,11 @@ p.quote {
   font-weight: 100;
 }
 
+hr {
+  border: none;
+  border-top: 1px solid #000;
+}
+
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
