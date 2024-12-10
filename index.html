@@ -5,12 +5,101 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Better Internet Foundation</title>
-  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Better Internet" />
   <link rel="stylesheet" href="styles.css">
   <script defer src="scripts/nav.js"></script>
 </head>
 <body>
   <div id="nav-placeholder"></div> <!-- Placeholder for the navigation -->
+
+  <canvas id="dotMatrix"></canvas>
+  <script>
+	const canvas = document.getElementById('dotMatrix');
+	const ctx = canvas.getContext('2d');
+
+	// Resize canvas to fit the window
+	function resizeCanvas() {
+	  canvas.width = window.innerWidth;
+	  canvas.height = 500;
+	}
+	window.addEventListener('resize', resizeCanvas);
+	resizeCanvas();
+
+	const dots = [];
+	const dotCount = 30;
+	const lineThreshold = 100;
+
+	// Initialize dots
+	for (let i = 0; i < dotCount; i++) {
+	  dots.push({
+        x: Math.random() * (canvas.width - 20) + 10, // Avoid edges
+        y: Math.random() * (canvas.height - 20) + 10, // Avoid edges
+		radius: 4,
+		dx: (Math.random() - 0.5) * 2,
+		dy: (Math.random() - 0.5) * 2
+	  });
+	}
+
+	function drawDots() {
+	  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	  // Draw dots
+	  for (const dot of dots) {
+		ctx.beginPath();
+		ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+		ctx.fillStyle = '#007bff';
+		ctx.fill();
+	  }
+
+	  // Draw connecting lines
+	  for (let i = 0; i < dots.length; i++) {
+		for (let j = i + 1; j < dots.length; j++) {
+		  const dx = dots[i].x - dots[j].x;
+		  const dy = dots[i].y - dots[j].y;
+		  const distance = Math.sqrt(dx * dx + dy * dy);
+		  if (distance < lineThreshold) {
+			ctx.beginPath();
+			ctx.moveTo(dots[i].x, dots[i].y);
+			ctx.lineTo(dots[j].x, dots[j].y);
+			ctx.strokeStyle = `#000`;
+			ctx.lineWidth = 1;
+			ctx.stroke();
+		  }
+		}
+	  }
+
+	  // Update dot positions
+      for (const dot of dots) {
+        dot.x += dot.dx;
+        dot.y += dot.dy;
+
+        if (dot.x - dot.radius < 0) {
+          dot.x = dot.radius;
+          dot.dx *= -1;
+        }
+        if (dot.x + dot.radius > canvas.width) {
+          dot.x = canvas.width - dot.radius;
+          dot.dx *= -1;
+        }
+        if (dot.y - dot.radius < 0) {
+          dot.y = dot.radius;
+          dot.dy *= -1;
+        }
+        if (dot.y + dot.radius > canvas.height) {
+          dot.y = canvas.height - dot.radius;
+          dot.dy *= -1;
+        }
+      }
+
+      requestAnimationFrame(drawDots);
+    }
+
+    drawDots();
+  </script>
 
   <main>
     <p>
