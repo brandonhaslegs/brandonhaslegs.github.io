@@ -18,61 +18,88 @@
 
   <canvas id="dotMatrix"></canvas>
   <script>
-	const canvas = document.getElementById('dotMatrix');
-	const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById('dotMatrix');
+    const ctx = canvas.getContext('2d');
 
-	// Resize canvas to fit the window
-	function resizeCanvas() {
-	  canvas.width = window.innerWidth;
-	  canvas.height = 500;
-	}
-	window.addEventListener('resize', resizeCanvas);
-	resizeCanvas();
+    let lineColor = '#000000'; // Default to black
+    let dotColor = '#007bff'; // Default to blue
 
-	const dots = [];
-	const dotCount = 30;
-	const lineThreshold = 100;
+    // Function to update colors based on theme
+    function updateColors() {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        lineColor = '#ffffff'; // White lines for dark mode
+        dotColor = '#00bfff'; // Light blue dots for dark mode
+        document.body.style.backgroundColor = '#121212'; // Dark background
+      } else {
+        lineColor = '#000000'; // Black lines for light mode
+        dotColor = '#007bff'; // Blue dots for light mode
+        document.body.style.backgroundColor = '#fefaf3'; // Light background
+      }
+    }
 
-	// Initialize dots
-	for (let i = 0; i < dotCount; i++) {
-	  dots.push({
-        x: Math.random() * (canvas.width - 20) + 10, // Avoid edges
-        y: Math.random() * (canvas.height - 20) + 10, // Avoid edges
-		radius: 4,
-		dx: (Math.random() - 0.5) * 2,
-		dy: (Math.random() - 0.5) * 2
-	  });
-	}
+    // Listen for changes in color scheme
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateColors);
 
-	function drawDots() {
-	  ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Resize canvas to fit the window
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight * 0.3;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-	  // Draw dots
-	  for (const dot of dots) {
-		ctx.beginPath();
-		ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
-		ctx.fillStyle = '#007bff';
-		ctx.fill();
-	  }
+    const dots = [];
+    const dotCount = 30;
+    const lineThreshold = 100;
 
-	  // Draw connecting lines
-	  for (let i = 0; i < dots.length; i++) {
-		for (let j = i + 1; j < dots.length; j++) {
-		  const dx = dots[i].x - dots[j].x;
-		  const dy = dots[i].y - dots[j].y;
-		  const distance = Math.sqrt(dx * dx + dy * dy);
-		  if (distance < lineThreshold) {
-			ctx.beginPath();
-			ctx.moveTo(dots[i].x, dots[i].y);
-			ctx.lineTo(dots[j].x, dots[j].y);
-			ctx.strokeStyle = `#000`;
-			ctx.lineWidth = 1;
-			ctx.stroke();
-		  }
-		}
-	  }
+    // Initialize dots
+    for (let i = 0; i < dotCount; i++) {
+      dots.push({
+        x: Math.random() * (canvas.width - 8) + 4,
+        y: Math.random() * (canvas.height - 8) + 4,
+        radius: 4,
+        dx: (Math.random() - 0.5) * 2,
+        dy: (Math.random() - 0.5) * 2
+      });
+    }
 
-	  // Update dot positions
+    function drawDots() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw dots
+      for (const dot of dots) {
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#007bff';
+        ctx.fill();
+      }
+
+      // Draw connecting lines
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const dx = dots[i].x - dots[j].x;
+          const dy = dots[i].y - dots[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < lineThreshold) {
+            ctx.beginPath();
+            ctx.moveTo(dots[i].x, dots[i].y);
+            ctx.lineTo(dots[j].x, dots[j].y);
+            ctx.strokeStyle = window.matchMedia('(prefers-color-scheme: dark)').matches ? '#ffffff' : '#000000';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw dots
+      for (const dot of dots) {
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#007bff';
+        ctx.fill();
+      }
+
+      // Update dot positions
       for (const dot of dots) {
         dot.x += dot.dx;
         dot.y += dot.dy;
@@ -100,7 +127,7 @@
 
     drawDots();
   </script>
-
+  
   <main>
     <p>
       Established in 2020, the Better Internet Foundation is a Swiss non-profit committed to supporting projects 
