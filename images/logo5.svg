@@ -1,0 +1,26 @@
+<svg width="87" height="87" viewBox="0 0 87 87" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path class="logo-line" d="M75.1494 26.7692L15.1494 26.7692M75.1494 26.7692L55.9128 74M75.1494 26.7692L15.1494 52.3459M15.1494 26.7692L15.1494 52.3459M15.1494 26.7692L55.9128 14M37.1341 52.3459L55.9128 14M37.1341 52.3459H15.1494M37.1341 52.3459L55.9128 74M55.9128 74L55.9128 14" stroke-linecap="round" stroke-linejoin="round"/>
+<circle class="logo-fill" cx="55.9314" cy="14" r="3.5"/>
+<circle class="logo-fill" cx="15.1494" cy="26.8164" r="3.5"/>
+<circle class="logo-fill" cx="75.1494" cy="26.8164" r="3.5"/>
+<circle class="logo-fill" cx="55.9314" cy="74" r="3.5"/>
+<circle class="logo-fill" cx="37.0876" cy="52.332" r="3.5"/>
+<circle class="logo-fill" cx="15.1494" cy="52.332" r="3.5"/>
+
+  <style>
+    .logo-fill {
+		fill: #007bff;
+	}
+
+	.logo-line {
+		stroke: #000;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		.logo-line {
+			stroke: #fdf5e6;
+		}
+	}
+  </style>
+
+</svg>
