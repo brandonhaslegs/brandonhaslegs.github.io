@@ -11,7 +11,7 @@
 	function resizeCanvas() {
 	  const dpr = window.devicePixelRatio || 1;
 	  canvas.width = window.innerWidth * dpr;
-	  canvas.height = document.documentElement.scrollHeight * dpr;
+	  canvas.height = window.innerHeight * dpr;
 	  ctx.scale(dpr, dpr);
   
 	  updateDynamicVariables(); // Update variables when canvas resizes
