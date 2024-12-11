@@ -12,149 +12,19 @@
   <meta name="apple-mobile-web-app-title" content="Better Internet" />
   <link rel="stylesheet" href="styles.css">
   <script defer src="scripts/nav.js"></script>
-
-  <style>
-	canvas {
-		display: block;
-		/* position: absolute; */
-		top: 0;
-		left: 0;
-		height: 50%; /* Set canvas height to 30% of the viewport */
-	}
-
-	@media (prefers-color-scheme: dark) {
-		body {
-		background-color: #000;
-		}
-	}
-
-	@media (max-width: 768px) {
-		/* Reduce dots and lines for smaller screens */
-		:root {
-		--dot-count: 25;
-		--line-threshold: 100;
-		}
-	}
-
-	@media (min-width: 769px) {
-		:root {
-		--dot-count: 50;
-		--line-threshold: 100;
-		}
-	}
-
-	@media (min-width: 1200px) {
-		:root {
-		--dot-count: 100;
-		--line-threshold: 110;
-		}
-	}
-
-	@media (min-width: 1600px) {
-		:root {
-		--dot-count: 100;
-		--line-threshold: 150;
-		}
-	}
-	</style>
-
+  <script src="scripts/dotMatrix.js" defer></script>
 </head>
 <body>
   <div id="nav-placeholder"></div> <!-- Placeholder for the navigation -->
 
   <canvas id="dotMatrix"></canvas>
-  <script>
-    const canvas = document.getElementById('dotMatrix');
-    const ctx = canvas.getContext('2d');
-
-    // Resize canvas to fit the window
-    function resizeCanvas() {
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * 0.5 * dpr; // Adjust height to 30% of the viewport
-      ctx.scale(dpr, dpr);
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    const dots = [];
-    const dotCount = getComputedStyle(document.documentElement).getPropertyValue('--dot-count') || 50;
-    const lineThreshold = getComputedStyle(document.documentElement).getPropertyValue('--line-threshold') || 100;
-
-    // Initialize dots
-    for (let i = 0; i < dotCount; i++) {
-      dots.push({
-		x: Math.random() * (canvas.width / (window.devicePixelRatio || 1) - 8) + 4,
-		y: Math.random() * (canvas.height / (window.devicePixelRatio || 1) - 8) + 4,
-        radius: 4,
-        dx: (Math.random() - 0.5) * 2,
-        dy: (Math.random() - 0.5) * 2
-      });
-    }
-
-    function drawDots() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Draw connecting lines
-      for (let i = 0; i < dots.length; i++) {
-        for (let j = i + 1; j < dots.length; j++) {
-          const dx = dots[i].x - dots[j].x;
-          const dy = dots[i].y - dots[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < lineThreshold) {
-            ctx.beginPath();
-            ctx.moveTo(dots[i].x, dots[i].y);
-            ctx.lineTo(dots[j].x, dots[j].y);
-            ctx.strokeStyle = window.matchMedia('(prefers-color-scheme: dark)').matches ? '#fdf5e6' : '#000000';
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Draw dots
-      for (const dot of dots) {
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
-        ctx.fillStyle = '#007bff';
-        ctx.fill();
-      }
-
-      // Update dot positions
-      for (const dot of dots) {
-        dot.x += dot.dx;
-        dot.y += dot.dy;
-
-		if (dot.x - dot.radius < 0) {
-			dot.x = dot.radius;
-			dot.dx *= -1;
-		}
-		if (dot.x + dot.radius > canvas.width / (window.devicePixelRatio || 1)) {
-			dot.x = canvas.width / (window.devicePixelRatio || 1) - dot.radius;
-			dot.dx *= -1;
-		}
-		if (dot.y - dot.radius < 0) {
-			dot.y = dot.radius;
-			dot.dy *= -1;
-		}
-		if (dot.y + dot.radius > canvas.height / (window.devicePixelRatio || 1)) {
-			dot.y = canvas.height / (window.devicePixelRatio || 1) - dot.radius;
-			dot.dy *= -1;
-		}
-      }
-
-      requestAnimationFrame(drawDots);
-    }
-
-    drawDots();
-  </script>
-  
-  
+ 
   <main>
-    <p>
+    <p id="home-space">
       Established in 2020, the Better Internet Foundation is a Swiss non-profit committed to supporting projects 
       and people developing resilient, non-extractive peer-to-peer technologies that promote Internet freedom.
     </p>
+	<hr>
     <p class="small">
       The Foundation is currently supported by grants from <a href="http://www.radworks.org" target="_blank">Radworks</a>.
     </p>
