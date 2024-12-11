@@ -22,6 +22,7 @@ canvas {
   left: 0;
   height: 100%;
   pointer-events: none;
+  z-index: -100;
 }
 
 svg path {
@@ -187,6 +188,7 @@ ul {
   font-size: 24px;
   font-weight: 300;
   text-wrap: pretty;
+  background: var(--background-color);
 }
 
 p.small {
