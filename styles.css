@@ -59,7 +59,7 @@ header img {
 
 nav {
   display: flex;
-  gap: 24px;
+  gap: 40px;
   justify-content: end;
 }
 
@@ -100,7 +100,7 @@ nav a#logo:hover {
 
 nav #links {
   display: flex;
-  gap: 40px;
+  gap: 24px;
 }
 
 nav #links a {
