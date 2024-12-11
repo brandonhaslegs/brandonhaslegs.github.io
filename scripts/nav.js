@@ -38,6 +38,18 @@ function displayRandomLogo() {
     // Select a random logo
     const randomLogo = logos[Math.floor(Math.random() * logos.length)];
 
+	// Fetch the SVG content
+	fetch(randomLogo)
+	.then(response => response.text())
+	.then(svgContent => {
+		// Insert the SVG content into the DOM
+		const svgContainer = document.getElementById('svg-container');
+		svgContainer.innerHTML = svgContent;
+	})
+	.catch(error => {
+		console.error("Error loading SVG:", error);
+	});
+
     // Update the header logo
     const logoElement = document.getElementById('header-logo');
     if (logoElement) {
