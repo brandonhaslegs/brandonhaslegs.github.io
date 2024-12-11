@@ -53,17 +53,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header img {
+nav img {
   max-height: 50px;
 }
 
-#header-logo {
+#svg-container svg {
   width: 56px;
   height: 56px;
   margin-right: 8px;
@@ -266,5 +260,21 @@ hr {
   :root {
     --foreground-color: #fdf5e6;
     --background-color: #000;
+  }
+}
+
+/* logo dark mode styling */
+
+.logo-fill {
+  fill: #007bff;
+}
+
+.logo-line {
+  stroke: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  .logo-line {
+    stroke: #fdf5e6;
   }
 }
