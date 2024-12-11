@@ -11,6 +11,17 @@
   --secondary-color: yellow;
   --foreground-color: #000;
   --background-color: #fdf5e6;
+  --dot-count: 50; /* Default, overwritten by JavaScript */
+  --line-threshold: 100; /* Default, overwritten by JavaScript */
+}
+
+canvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  pointer-events: none;
 }
 
 svg path {
@@ -24,6 +35,7 @@ svg circle {
 
 ::selection {
   background-color: yellow;
+  color: #000;
 }
 
 html {
@@ -57,16 +69,17 @@ header img {
   margin-right: 8px;
 }
 
-nav {
-  display: flex;
-  gap: 40px;
-  justify-content: end;
+#nav-placeholder {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 nav {
   display: flex;
+  gap: 40px;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 nav a#logo {
@@ -77,6 +90,11 @@ nav a#logo {
   line-height: 24px;
 }
 
+nav a#logo.current::after,
+nav a#logo.current::before {
+  content: none;
+}
+
 nav a {
   text-decoration: none;
   color: var(--foreground-color);
@@ -84,7 +102,6 @@ nav a {
 
 nav a:hover {
   color: var(--primary-color);
-  border-bottom: 1px solid var(--primary-color);
 }
 
 nav a.current {
@@ -105,6 +122,48 @@ nav #links {
 
 nav #links a {
   white-space: nowrap;
+}
+
+a.nav-item {
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.nav-item::before,
+.nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: -3.5px; /* Position the dots below the border */
+  width: 6px; /* Dot size */
+  height: 6px; /* Dot size */
+  background-color: var(--primary-color);
+  border-radius: 50%; /* Makes the dots circular */
+  opacity: 0; /* Initially hidden */
+  transform: scale(0.8); /* Slightly smaller, for transition effect */
+}
+
+.nav-item::before {
+  left: 0; /* Dot on the left */
+  transform-origin: center;
+}
+
+.nav-item::after {
+  right: 0; /* Dot on the right */
+  transform-origin: center;
+}
+
+.nav-item.current::before,
+.nav-item.current::after {
+  opacity: 1; /* Show the dots */
+  transform: scale(1); /* Full size */
+}
+
+.nav-item {
+  border-bottom: 1px solid transparent; /* Default state, no visible line */
+}
+
+.nav-item.current {
+  border-bottom: 1px solid var(--foreground-color); /* Show the line on hover and for current page */
 }
 
 main {
@@ -141,6 +200,10 @@ p.small {
   font-weight: 400;
 }
 
+p#home-space {
+  margin-top: 30%;
+}
+
 a {
   color: var(--primary-color);
 }
@@ -148,6 +211,10 @@ a {
 sup {
   font-weight: 600;
   font-size: 12px;
+}
+
+sup.external-link {
+  rotate: 45deg;
 }
 
 p.quote {
@@ -160,11 +227,14 @@ hr {
 }
 
 @media (max-width: 768px) {
+  body {
+    margin-top: 0;
+  }
+
   nav {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    margin-left: 24px;
     gap: 32px;
   }
 
