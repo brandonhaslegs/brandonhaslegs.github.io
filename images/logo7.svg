@@ -1,26 +1,9 @@
 <svg width="87" height="87" viewBox="0 0 87 87" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path class="logo-line" d="M74.9999 39.657L67.2439 57.7496M74.9999 39.657L25.3771 39.657M74.9999 39.657L51.9023 13M67.2439 57.7496L51.9023 13M67.2439 57.7496L12.5459 57.7496M51.9023 74L12.5459 57.7496M51.9023 74L51.9023 13M51.9023 74L25.3771 39.657M25.3771 39.657L12.5459 57.7496" stroke-linecap="round" stroke-linejoin="round"/>
-<circle class="logo-fill" cx="51.9231" cy="13" r="3.5"/>
-<circle class="logo-fill" cx="75" cy="39.6523" r="3.5"/>
-<circle class="logo-fill" cx="25.3752" cy="39.6523" r="3.5"/>
-<circle class="logo-fill" cx="12.5459" cy="57.7646" r="3.5"/>
-<circle class="logo-fill" cx="67.2356" cy="57.7646" r="3.5"/>
-<circle class="logo-fill" cx="51.9038" cy="74" r="3.5"/>
-
-  <style>
-    .logo-fill {
-		fill: #007bff;
-	}
-
-	.logo-line {
-		stroke: #000;
-	}
-
-	@media (prefers-color-scheme: dark) {
-		.logo-line {
-			stroke: #fdf5e6;
-		}
-	}
-  </style>
-
+	<path class="logo-line" d="M74.9999 39.657L67.2439 57.7496M74.9999 39.657L25.3771 39.657M74.9999 39.657L51.9023 13M67.2439 57.7496L51.9023 13M67.2439 57.7496L12.5459 57.7496M51.9023 74L12.5459 57.7496M51.9023 74L51.9023 13M51.9023 74L25.3771 39.657M25.3771 39.657L12.5459 57.7496" stroke-linecap="round" stroke-linejoin="round"/>
+	<circle class="logo-fill" cx="51.9231" cy="13" r="3.5"/>
+	<circle class="logo-fill" cx="75" cy="39.6523" r="3.5"/>
+	<circle class="logo-fill" cx="25.3752" cy="39.6523" r="3.5"/>
+	<circle class="logo-fill" cx="12.5459" cy="57.7646" r="3.5"/>
+	<circle class="logo-fill" cx="67.2356" cy="57.7646" r="3.5"/>
+	<circle class="logo-fill" cx="51.9038" cy="74" r="3.5"/>
 </svg>

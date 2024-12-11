@@ -1,26 +1,9 @@
 <svg width="87" height="87" viewBox="0 0 87 87" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path class="logo-line" d="M47.2308 12.9531L15.9075 73.6299M47.2308 12.9531L11.498 39.6316M47.2308 12.9531L69.3065 73.6299M15.9075 73.6299H69.3065M15.9075 73.6299L54.6482 64.2M69.3065 39.6316L54.6482 64.2M69.3065 39.6316V73.6299M69.3065 39.6316H11.498M11.498 39.6316L54.6482 64.2" stroke-linecap="round" stroke-linejoin="round"/>
-<circle class="logo-fill" cx="47.208" cy="12.9531" r="3.5"/>
-<circle class="logo-fill" cx="11.498" cy="39.6377" r="3.5"/>
-<circle class="logo-fill" cx="69.3064" cy="39.6377" r="3.5"/>
-<circle class="logo-fill" cx="69.3064" cy="73.6299" r="3.5"/>
-<circle class="logo-fill" cx="15.9385" cy="73.6299" r="3.5"/>
-<circle class="logo-fill" cx="54.6426" cy="64.1973" r="3.5"/>
-
-  <style>
-    .logo-fill {
-		fill: #007bff;
-	}
-
-	.logo-line {
-		stroke: #000;
-	}
-
-	@media (prefers-color-scheme: dark) {
-		.logo-line {
-			stroke: #fdf5e6;
-		}
-	}
-  </style>
-
+	<path class="logo-line" d="M47.2308 12.9531L15.9075 73.6299M47.2308 12.9531L11.498 39.6316M47.2308 12.9531L69.3065 73.6299M15.9075 73.6299H69.3065M15.9075 73.6299L54.6482 64.2M69.3065 39.6316L54.6482 64.2M69.3065 39.6316V73.6299M69.3065 39.6316H11.498M11.498 39.6316L54.6482 64.2" stroke-linecap="round" stroke-linejoin="round"/>
+	<circle class="logo-fill" cx="47.208" cy="12.9531" r="3.5"/>
+	<circle class="logo-fill" cx="11.498" cy="39.6377" r="3.5"/>
+	<circle class="logo-fill" cx="69.3064" cy="39.6377" r="3.5"/>
+	<circle class="logo-fill" cx="69.3064" cy="73.6299" r="3.5"/>
+	<circle class="logo-fill" cx="15.9385" cy="73.6299" r="3.5"/>
+	<circle class="logo-fill" cx="54.6426" cy="64.1973" r="3.5"/>
 </svg>
