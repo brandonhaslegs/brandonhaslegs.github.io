@@ -59,7 +59,7 @@ header img {
 
 nav {
   display: flex;
-  gap: 40px;
+  gap: 24px;
   justify-content: end;
 }
 
