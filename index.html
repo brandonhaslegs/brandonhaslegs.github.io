@@ -12,6 +12,52 @@
   <meta name="apple-mobile-web-app-title" content="Better Internet" />
   <link rel="stylesheet" href="styles.css">
   <script defer src="scripts/nav.js"></script>
+
+  <style>
+	canvas {
+		display: block;
+		/* position: absolute; */
+		top: 0;
+		left: 0;
+		height: 50%; /* Set canvas height to 30% of the viewport */
+	}
+
+	@media (prefers-color-scheme: dark) {
+		body {
+		background-color: #000;
+		}
+	}
+
+	@media (max-width: 768px) {
+		/* Reduce dots and lines for smaller screens */
+		:root {
+		--dot-count: 25;
+		--line-threshold: 100;
+		}
+	}
+
+	@media (min-width: 769px) {
+		:root {
+		--dot-count: 50;
+		--line-threshold: 100;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		:root {
+		--dot-count: 100;
+		--line-threshold: 110;
+		}
+	}
+
+	@media (min-width: 1600px) {
+		:root {
+		--dot-count: 100;
+		--line-threshold: 150;
+		}
+	}
+	</style>
+
 </head>
 <body>
   <div id="nav-placeholder"></div> <!-- Placeholder for the navigation -->
@@ -21,42 +67,25 @@
     const canvas = document.getElementById('dotMatrix');
     const ctx = canvas.getContext('2d');
 
-    let lineColor = '#000000'; // Default to black
-    let dotColor = '#007bff'; // Default to blue
-
-    // Function to update colors based on theme
-    function updateColors() {
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        lineColor = '#ffffff'; // White lines for dark mode
-        dotColor = '#00bfff'; // Light blue dots for dark mode
-        document.body.style.backgroundColor = '#121212'; // Dark background
-      } else {
-        lineColor = '#000000'; // Black lines for light mode
-        dotColor = '#007bff'; // Blue dots for light mode
-        document.body.style.backgroundColor = '#fefaf3'; // Light background
-      }
-    }
-
-    // Listen for changes in color scheme
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateColors);
-
     // Resize canvas to fit the window
     function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight * 0.3;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * 0.5 * dpr; // Adjust height to 30% of the viewport
+      ctx.scale(dpr, dpr);
     }
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
     const dots = [];
-    const dotCount = 6;
-    const lineThreshold = 10000;
+    const dotCount = getComputedStyle(document.documentElement).getPropertyValue('--dot-count') || 50;
+    const lineThreshold = getComputedStyle(document.documentElement).getPropertyValue('--line-threshold') || 100;
 
     // Initialize dots
     for (let i = 0; i < dotCount; i++) {
       dots.push({
-        x: Math.random() * (canvas.width - 8) + 4,
-        y: Math.random() * (canvas.height - 8) + 4,
+		x: Math.random() * (canvas.width / (window.devicePixelRatio || 1) - 8) + 4,
+		y: Math.random() * (canvas.height / (window.devicePixelRatio || 1) - 8) + 4,
         radius: 4,
         dx: (Math.random() - 0.5) * 2,
         dy: (Math.random() - 0.5) * 2
@@ -65,14 +94,6 @@
 
     function drawDots() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Draw dots
-      for (const dot of dots) {
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
-        ctx.fillStyle = '#007bff';
-        ctx.fill();
-      }
 
       // Draw connecting lines
       for (let i = 0; i < dots.length; i++) {
@@ -104,22 +125,22 @@
         dot.x += dot.dx;
         dot.y += dot.dy;
 
-        if (dot.x - dot.radius < 0) {
-          dot.x = dot.radius;
-          dot.dx *= -1;
-        }
-        if (dot.x + dot.radius > canvas.width) {
-          dot.x = canvas.width - dot.radius;
-          dot.dx *= -1;
-        }
-        if (dot.y - dot.radius < 0) {
-          dot.y = dot.radius;
-          dot.dy *= -1;
-        }
-        if (dot.y + dot.radius > canvas.height) {
-          dot.y = canvas.height - dot.radius;
-          dot.dy *= -1;
-        }
+		if (dot.x - dot.radius < 0) {
+			dot.x = dot.radius;
+			dot.dx *= -1;
+		}
+		if (dot.x + dot.radius > canvas.width / (window.devicePixelRatio || 1)) {
+			dot.x = canvas.width / (window.devicePixelRatio || 1) - dot.radius;
+			dot.dx *= -1;
+		}
+		if (dot.y - dot.radius < 0) {
+			dot.y = dot.radius;
+			dot.dy *= -1;
+		}
+		if (dot.y + dot.radius > canvas.height / (window.devicePixelRatio || 1)) {
+			dot.y = canvas.height / (window.devicePixelRatio || 1) - dot.radius;
+			dot.dy *= -1;
+		}
       }
 
       requestAnimationFrame(drawDots);
@@ -127,6 +148,7 @@
 
     drawDots();
   </script>
+  
   
   <main>
     <p>
