@@ -85,9 +85,19 @@ nav a#logo {
   line-height: 24px;
 }
 
+nav a#logo.current,
+nav a#logo:hover {
+  color: var(--foreground-color);
+  border-bottom: none;
+}
+
 nav a#logo.current::after,
 nav a#logo.current::before {
   content: none;
+}
+
+nav a#logo #svg-container {
+  margin-top: 3px;
 }
 
 nav a {
@@ -102,12 +112,6 @@ nav a:hover {
 nav a.current {
   color: var(--primary-color);
   border-bottom: 1px solid var(--primary-color);
-}
-
-nav a#logo.current,
-nav a#logo:hover {
-  color: var(--foreground-color);
-  border-bottom: none;
 }
 
 nav #links {
